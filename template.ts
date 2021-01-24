@@ -63,5 +63,8 @@ export default {
             "importsNotUsedAsValues": "error"
             }
         }
-      `
+    `,
+    ".gitignore": `
+        node_modules
+    `
 }

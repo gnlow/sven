@@ -16,8 +16,15 @@ await Promise.all(Object.entries(template).map(([filename, data]) => {
     return Deno.writeTextFile(filename, data)
 }))
 
+function install(name: string) {
+    return `bash -c "npm list ${name} || npm i -D ${name}"`
+}
+
 await execSequence([
-    `bash -c npm`
+    install("@snowpack/plugin-svelte"),
+    install("@snowpack/plugin-typescript"),
+    install("svelte-preprocess"),
+    install("typescript"),
 ])
 
 console.log(config)
