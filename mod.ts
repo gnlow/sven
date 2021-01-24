@@ -1,7 +1,10 @@
 import readConfig from "./readConfig.ts"
 
-const [root] = Deno.args
-const config = await readConfig(root)
+const [root = "./"] = Deno.args
+Deno.chdir(root)
+const config = await readConfig()
+
+await Deno.mkdir("build")
 
 const cmd = Deno.run({
     cmd: ["echo", "hello"]
