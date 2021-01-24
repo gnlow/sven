@@ -22,7 +22,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-export default {
+
+export interface TemplateOption {
+    vercelConfig: any
+}
+export default ({vercelConfig}: TemplateOption) => ({
     "snowpack.config.js": `
         module.exports = {
             mount: {
@@ -66,5 +70,13 @@ export default {
     `,
     ".gitignore": `
         node_modules
-    `
-}
+    `,
+    "vercel.json": JSON.stringify({
+        functions: {
+            "api/**/*.[jt]s": {
+                "runtime": "vercel-deno@0.7.6" 
+            }
+        },
+        ...vercelConfig,
+    })
+})
