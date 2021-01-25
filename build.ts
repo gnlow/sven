@@ -1,4 +1,4 @@
-import { exists } from "https://deno.land/std@0.84.0/fs/exists.ts"
+import { exists } from "./deps.ts"
 
 import readConfig from "./readConfig.ts"
 import loadTemplate from "./loadTemplate.ts"

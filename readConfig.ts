@@ -1,5 +1,7 @@
-import { globToRegExp } from "https://deno.land/std@0.84.0/path/glob.ts"
-import { parse } from "https://deno.land/std@0.84.0/encoding/yaml.ts"
+import {
+    globToRegExp,
+    parse,
+} from "./deps.ts"
 
 export interface Config {
     path?: {
