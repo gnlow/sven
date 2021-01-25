@@ -4,9 +4,7 @@ import readConfig from "./readConfig.ts"
 import loadTemplate from "./loadTemplate.ts"
 import installPkg from "./installPkg.ts"
 
-export default async function build(path: string) {
-    Deno.chdir(path)
-
+export default async function build() {
     const config = await readConfig()
 
     await exists("build") || await Deno.mkdir("build")
@@ -14,6 +12,6 @@ export default async function build(path: string) {
 
     await loadTemplate(config || {})
     await installPkg()
-    
-    console.log(config)
+
+    Deno.chdir("../")
 }
