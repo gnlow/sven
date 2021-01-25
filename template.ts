@@ -68,9 +68,7 @@ export default ({vercelConfig}: TemplateOption) => ({
             }
         }
     `,
-    ".gitignore": `
-        node_modules
-    `,
+    ".gitignore": `node_modules`,
     "vercel.json": JSON.stringify({
         functions: {
             "api/**/*.[jt]s": {
