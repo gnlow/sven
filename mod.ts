@@ -1,18 +1,12 @@
-import { exists } from "https://deno.land/std@0.84.0/fs/exists.ts"
+import { cac } from "https://unpkg.com/cac/mod.ts"
+const cli = cac("sven")
 
-import readConfig from "./readConfig.ts"
-import loadTemplate from "./loadTemplate.ts"
-import installPkg from "./installPkg.ts"
+import build from "./build.ts"
 
-const [root = "./"] = Deno.args
-Deno.chdir(root)
+cli
+    .command("build <path>")
+    .action(build)
 
-const config = await readConfig()
+cli.help()
 
-await exists("build") || await Deno.mkdir("build")
-Deno.chdir("build")
-
-await loadTemplate(config || {})
-await installPkg()
-
-console.log(config)
+cli.parse()
