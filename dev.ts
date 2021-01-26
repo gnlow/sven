@@ -1,11 +1,9 @@
-import { execSequence } from "./deps.ts"
+import { exec, OutputMode } from "./deps.ts"
 
 export default async function dev() {
     Deno.chdir("build")
 
-    await execSequence([
-        "snowpack dev"
-    ])
+    await exec(`bash -c "npm run dev"`)
 
     Deno.chdir("../")
 }

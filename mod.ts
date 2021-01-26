@@ -6,15 +6,15 @@ import dev from "./dev.ts"
 
 cli 
     .command("build [path]")
-    .action(path => {
+    .action(async path => {
         Deno.chdir(path)
-        build()
+        await build()
     })
 cli
     .command("dev [path]")
-    .action(path => {
+    .action(async path => {
         Deno.chdir(path)
-        dev()
+        await dev()
     })
 
 cli.help()

@@ -30,8 +30,7 @@ export default ({vercelConfig}: TemplateOption) => ({
     "snowpack.config.js": `
         module.exports = {
             mount: {
-                public: {url: '/', static: true},
-                src: {url: '/dist'},
+                '../src': {url: '/dist'},
             },
             plugins: ['@snowpack/plugin-svelte', '@snowpack/plugin-typescript'],
         }
@@ -49,7 +48,7 @@ export default ({vercelConfig}: TemplateOption) => ({
     `,
     "tsconfig.json": `
         {
-            "include": ["src"],
+            "include": ["../src"],
             "compilerOptions": {
             "module": "esnext",
             "target": "esnext",
@@ -76,5 +75,20 @@ export default ({vercelConfig}: TemplateOption) => ({
             }
         },
         ...vercelConfig,
-    })
+    }),
+    "package.json": `
+        {
+            "scripts": {
+                "dev": "snowpack dev",
+                "build": "snowpack build"
+            },
+            "devDependencies": {
+                "@snowpack/plugin-svelte": "^3.5.0",
+                "@snowpack/plugin-typescript": "^1.2.0",
+                "snowpack": "^3.0.1",
+                "svelte-preprocess": "^4.0.8",
+                "typescript": "^4.0.0"
+            }
+        }
+    `
 })
