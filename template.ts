@@ -87,12 +87,17 @@ export default (config: Config) => ({
                 "dev": "snowpack dev",
                 "build": "snowpack build"
             },
+            "dependencies": {
+                "svelte": "^3.31.2",
+                "svelte-spa-router": "^3.1.0"
+            }.
             "devDependencies": {
                 "@snowpack/plugin-svelte": "^3.5.0",
                 "@snowpack/plugin-typescript": "^1.2.0",
                 "snowpack": "^3.0.1",
                 "svelte-preprocess": "^4.0.8",
-                "typescript": "^4.0.0"
+                "typescript": "^4.0.0",
+                "@types/snowpack-env": "^2.3.2"
             }
         }
     `,
