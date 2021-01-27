@@ -23,10 +23,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-export interface TemplateOption {
-    vercelConfig: any
-}
-export default ({vercelConfig}: TemplateOption) => ({
+import { Config } from "./readConfig.ts"
+
+export default (config: Config) => ({
     "snowpack.config.js": `
         module.exports = {
             mount: {
@@ -74,7 +73,13 @@ export default ({vercelConfig}: TemplateOption) => ({
                 "runtime": "vercel-deno@0.7.6" 
             }
         },
-        ...vercelConfig,
+        rewrites: [
+            {
+                source: "/(.*)",
+                destination: "/index.html"
+            }
+        ],
+        ...config.vercel,
     }),
     "package.json": `
         {
@@ -90,5 +95,22 @@ export default ({vercelConfig}: TemplateOption) => ({
                 "typescript": "^4.0.0"
             }
         }
+    `,
+    "index.html": `
+        <!doctype html>
+        <html>
+        <head>
+            <meta charset='utf8'>
+            <meta name='viewport' content='width=device-width'>
+        
+            <title>Svelte app</title>
+            
+            <link rel='stylesheet' href='bundle.css'>
+        </head>
+        
+        <body>
+            <script src='bundle.js'></script>
+        </body>
+        </html>
     `
 })
