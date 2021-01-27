@@ -13,7 +13,7 @@ export interface Config {
 
 export default async function readConfig() {
     for await (const dirEntry of Deno.readDir("./")) {
-        if (globToRegExp("sven.config.{yml,yaml}").test(dirEntry.name)) {
+        if (globToRegExp("sven.{yml,yaml}").test(dirEntry.name)) {
             return parse(await Deno.readTextFile(dirEntry.name)) as Config
         }
     }
