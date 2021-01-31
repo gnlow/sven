@@ -29,7 +29,7 @@ export default (config: Config) => ({
     "snowpack.config.js": `
         module.exports = {
             mount: {
-                '../src': {url: '/dist'},
+                src: {url: '/dist'},
             },
             plugins: ['@snowpack/plugin-svelte', '@snowpack/plugin-typescript'],
         }
@@ -47,7 +47,7 @@ export default (config: Config) => ({
     `,
     "tsconfig.json": `
         {
-            "include": ["../src"],
+            "include": ["src"],
             "compilerOptions": {
             "module": "esnext",
             "target": "esnext",
@@ -90,7 +90,7 @@ export default (config: Config) => ({
             "dependencies": {
                 "svelte": "^3.31.2",
                 "svelte-spa-router": "^3.1.0"
-            }.
+            },
             "devDependencies": {
                 "@snowpack/plugin-svelte": "^3.5.0",
                 "@snowpack/plugin-typescript": "^1.2.0",
