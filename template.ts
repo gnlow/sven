@@ -30,6 +30,7 @@ export default (config: Config) => ({
         module.exports = {
             mount: {
                 src: {url: '/dist'},
+                public: {url: '/', static: true}
             },
             plugins: ['@snowpack/plugin-svelte', '@snowpack/plugin-typescript'],
         }
@@ -101,7 +102,7 @@ export default (config: Config) => ({
             }
         }
     `,
-    "index.html": `
+    "public/index.html": `
         <!doctype html>
         <html>
         <head>
@@ -114,7 +115,7 @@ export default (config: Config) => ({
         </head>
         
         <body>
-            <script src='bundle.js'></script>
+            <script src='dist/index.js' type='module'></script>
         </body>
         </html>
     `
