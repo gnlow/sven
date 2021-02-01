@@ -27,12 +27,21 @@ import { Config } from "./readConfig.ts"
 
 export default (config: Config) => ({
     "snowpack.config.js": `
+        const httpProxy = require('http-proxy')
+        const proxy = httpProxy.createServer({ target: 'http://localhost:3000' })
+
         module.exports = {
             mount: {
                 src: {url: '/dist'},
                 public: {url: '/', static: true}
             },
             plugins: ['@snowpack/plugin-svelte', '@snowpack/plugin-typescript'],
+            routes: [
+                {
+                    "src": "/api/.*",
+                    "dest": (req, res) => proxy.web(req, res)
+                }
+            ],
         }
     `,
     "svelte.config.js": `
@@ -98,7 +107,8 @@ export default (config: Config) => ({
                 "snowpack": "^3.0.1",
                 "svelte-preprocess": "^4.0.8",
                 "typescript": "^4.0.0",
-                "@types/snowpack-env": "^2.3.2"
+                "@types/snowpack-env": "^2.3.2",
+                "http-proxy": "^1.18.1"
             }
         }
     `,

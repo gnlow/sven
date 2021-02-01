@@ -16,6 +16,7 @@ export default async function build() {
     await exists("build") || await Deno.mkdir("build")
     Deno.chdir("build")
 
+    await symlink("..\\api", "api")
     await symlink("..\\src", "src")
 
     await loadTemplate(config || {})

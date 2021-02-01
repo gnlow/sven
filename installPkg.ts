@@ -14,5 +14,6 @@ export default async function installPkg() {
         install("svelte", true),
         install("svelte-spa-router", true),
         install("@types/snowpack-env"),
+        install("http-proxy"),
     ])
 }
