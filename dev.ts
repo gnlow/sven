@@ -1,9 +1,10 @@
-import { exec, OutputMode } from "./deps.ts"
+import { exec } from "./deps.ts"
 
 export default async function dev() {
     Deno.chdir("build")
 
-    await exec(`bash -c "npm run dev"`)
+    exec(`bash -c "vercel dev --listen 3000"`)
+    exec(`bash -c "npm run _dev"`)
 
     Deno.chdir("../")
 }

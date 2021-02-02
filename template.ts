@@ -94,7 +94,7 @@ export default (config: Config) => ({
     "package.json": `
         {
             "scripts": {
-                "dev": "snowpack dev",
+                "_dev": "snowpack dev",
                 "build": "snowpack build"
             },
             "dependencies": {
