@@ -6,7 +6,7 @@ import build from "./build.ts"
 import dev from "./dev.ts"
 
 cli 
-    .command("init [path]", "Load template")
+    .command("init [path]", "Load template (Need administrator permission to make symlink")
     .action(async path => {
         Deno.chdir(path)
         await init()
@@ -25,5 +25,6 @@ cli
     })
 
 cli.help()
+cli.version("0.1.0")
 
 cli.parse()
